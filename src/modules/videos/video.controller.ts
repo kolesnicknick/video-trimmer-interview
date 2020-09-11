@@ -8,8 +8,8 @@ import { UpdateVideoStatusPayload } from './dto/updateVideoStatus.payload';
 import { IGenericMessageBody } from '../profile/profile.service';
 
 @ApiBearerAuth()
-@ApiTags('controller')
-@Controller('api/video')
+@ApiTags('videos')
+@Controller('api/v1/video')
 export class VideoController {
   /**
    * Constructor

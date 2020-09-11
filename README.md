@@ -22,6 +22,12 @@
 - Start the app in pre-production mode using `npm run start` or `npm run start:dev` for development (the app will be exposed on the port 9000; not to conflict with React, Angular, or Vue)
 
 
+### Swagger documentation
+Swagger docs are production ready and you can use them as you wish
+To do that go to /api/json route and you will get json with all routes defined
+
+After issue: https://github.com/nestjs/swagger/issues/932 is fixed - you can use route /api/ to see docs locally
+
 ### 🔒 Environment Configuration
 
 By default, the application comes with a config module that can read in every environment variable from the `.env` file.

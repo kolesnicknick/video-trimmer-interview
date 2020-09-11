@@ -19,7 +19,7 @@ import { IProfile } from './profile.model';
  */
 @ApiBearerAuth()
 @ApiTags('profile')
-@Controller('api/profile')
+@Controller('api/v1/profile')
 export class ProfileController {
   /**
    * Constructor
