@@ -1,10 +1,11 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, Types } from 'mongoose';
 import { VideoStatus } from './enum/VideoStatus';
 
 /**
  * Mongoose Profile Schema
  */
 export const VideoSchema = new Schema({
+  _id: { type: Types.ObjectId, auto: true },
   starts_from: { type: Number, required: false },
   duration: { type: Number, required: false },
   video_url: { type: String, required: false },
