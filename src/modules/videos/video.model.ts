@@ -5,7 +5,6 @@ import { VideoStatus } from './enum/VideoStatus';
  * Mongoose Profile Schema
  */
 export const VideoSchema = new Schema({
-  username: { type: String, required: true },
   starts_from: { type: Number, required: false },
   duration: { type: Number, required: false },
   video_url: { type: String, required: false },
@@ -37,11 +36,19 @@ export interface IVideo extends Document {
    */
   readonly _id: Schema.Types.ObjectId;
   /**
-   * Username
+   * starts_from
    */
   readonly starts_from: number;
   /**
-   * Username
+   * starts_from
+   */
+  readonly name: number;
+  /**
+   * uploader_id
+   */
+  readonly uploader_id: Schema.Types.ObjectId;
+  /**
+   * duration
    */
   readonly duration: number;
   /**
