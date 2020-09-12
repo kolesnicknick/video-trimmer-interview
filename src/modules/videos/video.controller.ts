@@ -1,12 +1,12 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { AuthGuard } from "@nestjs/passport";
-import { VideoService } from "./video.service";
-import { IVideo } from "./video.model";
-import { UpdateVideoUrlPayload } from "./dto/updateVideoUrl.payload";
-import { UpdateVideoStatusPayload } from "./dto/updateVideoStatus.payload";
-import { IGenericMessageBody } from "../profile/profile.service";
-import { CreateVideoPayload } from "./dto/createVideo.dto";
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Request, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { VideoService } from './video.service';
+import { IVideo } from './video.model';
+import { UpdateVideoUrlPayload } from './dto/updateVideoUrl.payload';
+import { UpdateVideoStatusPayload } from './dto/updateVideoStatus.payload';
+import { IGenericMessageBody } from '../profile/profile.service';
+import { CreateVideoPayload } from './dto/createVideo.dto';
 
 @ApiBearerAuth()
 @ApiTags('videos')
@@ -33,6 +33,37 @@ export class VideoController {
     if (!video) {
       throw new NotFoundException(
         'The video with specified ID not found.',
+      );
+    }
+    return video;
+  }
+
+  /**
+   * Retrieves a particular profile
+   * @param req
+   * @returns {Promise<IVideo[]>} queried video info
+   */
+  @Get('/my')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiResponse({ status: 200, description: 'Fetch Profile Request Received' })
+  @ApiResponse({ status: 400, description: 'Fetch Profile Request Failed' })
+  async getMyVideos(@Request() req): Promise<IVideo[]> {
+    const videos = await this.videosService.getVideosByOwner(req.user);
+    return videos || [];
+  }
+
+  /**
+   * Retrieves a particular profile
+   * @returns {Promise<IVideo>} queried video info
+   */
+  @Get('/latest')
+  @ApiResponse({ status: 200, description: 'Fetch Profile Request Received' })
+  @ApiResponse({ status: 400, description: 'Fetch Profile Request Failed' })
+  async getLatestScheduled(): Promise<IVideo> {
+    const video = await this.videosService.getLatestScheduled();
+    if (!video) {
+      throw new NotFoundException(
+        'There are no videos in the queue',
       );
     }
     return video;

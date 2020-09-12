@@ -6,15 +6,28 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { IProfile } from '../profile/profile.model';
 import { CreateVideoPayload } from './dto/createVideo.dto';
+import { VideoStatus } from './enum/VideoStatus';
 
 
 @Injectable()
 export class VideoService {
   constructor( @InjectModel('Video') private readonly videoModel: Model<IVideo>,) {
   }
+
   async getVideoById(videoId: string): Promise<IVideo> {
     return this.videoModel.findById(videoId);
+  }
 
+  async getVideosByOwner(ownerId: string): Promise<IVideo[]> {
+   return this.videoModel.find()
+   .populate('author', 'name')
+   .where('uploader_id').equals(ownerId)
+   .exec();
+  }
+
+  async getLatestScheduled(): Promise<IVideo> {
+    return this.videoModel.findOne({status: VideoStatus.SCHEDULED})
+    .sort([['created_date', -1]]);
   }
 
   async createVideo(payload: CreateVideoPayload): Promise<IVideo>{
