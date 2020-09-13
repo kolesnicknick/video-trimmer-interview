@@ -42,3 +42,26 @@ By default, the application comes with a config module that can read in every en
 
 **DB_URL** - the URL to the MongoDB collection
 
+### Full Project install workflow
+- set env && yarn install && yarn build
+- yarn start:prod for current project
+- clone https://github.com/kolesnicknick/video-trimmer-cloud
+- go to cloud project => set env && yarn install
+- yarn start:prod for cloud project
+- If no errors you are set up
+
+### Project usage example
+- Learn Swagger documentation for current project
+- When done - upload && trim && manage videos following next flow
+    - Register
+    - Login
+    - Create video on current project (you will get _id in response)
+    - Using this _id from the previous step upload video file to the cloud project
+    - Check status of your uploaded videos using videos/my route
+    
+    In the background on cloud cron job will:
+        - Get video info to trim
+        - Find corresponding file in untrimmed folder
+        - Trim video
+        - Notify video-trimmer-backend with the info on trim status
+        - Go to next video trimming

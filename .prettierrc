@@ -1,4 +1,4 @@
 {
-  "doubleQuote": true,
+  "doubleQuote": false,
   "trailingComma": "all"
 }
