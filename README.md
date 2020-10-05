@@ -1,4 +1,6 @@
-#### The main app functionalities
+### This repo is resolve of interview task of background video processing
+    
+#### The main app functionalities (Task that have been solved)
 
 - User can use the mobile app to upload video and define timing parameters. After that, the request must be processed in the background.
 - User can see the list of the request with their statuses(done, failed, scheduled, processing).
