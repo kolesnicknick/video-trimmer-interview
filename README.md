@@ -1,17 +1,13 @@
+#### The main app functionalities
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+- User can use the mobile app to upload video and define timing parameters. After that, the request must be processed in the background.
+- User can see the list of the request with their statuses(done, failed, scheduled, processing).
+- User can restart failed requests.
+- When a new user starts using a mobile app, the app sends a request to the server for a  unique key which is used to subscribe user requests to identify user.
+- API has to return information about all errors in proper format including validation errors.
+- All videos should be returned in form of a link to the video and video duration
+- We will need to handle different  versions of the app depending for different clients.. That’s why we need API versioning mechanism
 
-<p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-
-<p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://travis-ci.org/msanvarov/nest-rest-mongo-boilerplate"><img src="https://travis-ci.org/msanvarov/nest-rest-mongo-boilerplate.svg?branch=master" alt="Travis" /></a>
-<a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-<a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
 
 #### Manual Deployment without Docker
 
